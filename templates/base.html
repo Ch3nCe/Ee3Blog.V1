@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog.title }}</title>
+    <link rel="icon" href="/static/ico/1218608.gif">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/article_detail.css">
+    <script src="/static/jQuery/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<div class="header">
+    <div class="content">
+        <h3 class="title">
+            {{ blog.title }}
+            <a href="/cn_backend/" class="btn  backend">管理</a>
+        </h3>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            {% load my_tags %}
+            {% get_classification_style user %}
+        </div>
+        <div class="col-md-9">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div class="row container pages">
+        <nav aria-label="Page navigation">
+            <ul class="pagination .pagination-lg">
+                {% if current_page.has_previous %}
+                    <li><a href="?page={{ current_page.previous_page_number }}" aria-label="Previous"><span
+                            aria-hidden="true">上一页</span></a></li>
+                {% else %}
+                    <li class="disabled"><a href="" aria-label="Previous"><span aria-hidden="true">上一页</span></a>
+                    </li>
+                {% endif %}
+
+                {% for item in page_range %}
+
+                    {% if current_page_num == item %}
+                        <li class="active"><a href="?page={{ item }}">{{ item }}</a></li>
+                    {% else %}
+                        <li><a href="?page={{ item }}">{{ item }}</a></li>
+                    {% endif %}
+
+                {% endfor %}
+
+
+
+                {% if current_page.has_next %}
+                    <li><a href="?page={{ current_page.next_page_number }}" aria-label="Next"><span
+                            aria-hidden="true">下一页</span></a>
+                        {% else %}
+                    <li class="disabled"><a href="" aria-label="Next"><span aria-hidden="true">下一页</span></a>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

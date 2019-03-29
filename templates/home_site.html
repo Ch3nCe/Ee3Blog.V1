@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="article_list">
+        {% for article in current_page %}
+            <div class="article-item clearfix">
+                <h5><a href="/{{ user.username }}/articles/{{ article.nid }}/">{{ article.title }}</a></h5>
+                <div class="article-desc">
+                            <span class="media-left">
+                                <a href=""><img src="media/{{ article.user.avatar }}" alt=""
+                                                class="img-circle avatar_img"></a>
+                            </span>
+                    <span class="media-right">
+                                {{ article.desc }}
+                            </span>
+                </div>
+                <div class="details pull-right ">&nbsp;&nbsp;
+                    <span>发布于:&nbsp;{{ article.create_time|date:"Y-m-d H:i" }}</span>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-comment"></span>评论&nbsp;({{ article.comment_count }})&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-thumbs-up"></span>点赞&nbsp;({{ article.up_count }})&nbsp;&nbsp;
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+
+{% endblock %}

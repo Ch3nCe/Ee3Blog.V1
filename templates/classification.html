@@ -1,0 +1,62 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            个人信息
+        </div>
+        <div class="panel-footer userinfo">
+            <div>
+                <img src="media/{{ user.avatar }}" alt="" class="img-thumbnail left-avatar">
+            </div>
+            <div>
+                <h4>博主:{{ user.username }}</h4>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            文章分类
+        </div>
+        <div class="panel-footer">
+            {% for cate in cate_list %}
+                <a href="/{{ user.username }}/category/{{ cate.0 }}/">
+                    <h5>{{ cate.0 }}&nbsp;({{ cate.1 }})</h5></a>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            标签
+        </div>
+        <div class="panel-footer ">
+            {% for tag in tag_list %}
+                <a href="/{{ user.username }}/tag/{{ tag.0 }}/"><h5>{{ tag.0 }}&nbsp;({{ tag.1 }})</h5>
+                </a>
+            {% endfor %}
+
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            时间归档
+        </div>
+        <div class="panel-footer ">
+            {% for date in date_list %}
+                <a href="/{{ user.username }}/archive/{{ date.0|date:"Y-m" }}/">
+                    <h5>{{ date.0|date:"Y-m" }}&nbsp;({{ date.1 }})</h5></a>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="panel panel-danger">
+        <div class="panel-body">
+            友情链接
+        </div>
+        <div class="panel-footer ">
+
+        </div>
+    </div>
+</div>
+
